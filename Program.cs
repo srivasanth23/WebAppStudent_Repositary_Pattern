@@ -15,8 +15,8 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 
 // Repository Pattern
 builder.Services.AddScoped<IStudentRepository, StudentRepo>();
-//builder.Services.AddScoped<ICourseRepository, CourseRepo>();
-//builder.Services.AddScoped<IEnrollmentRepository, EnrollmentRepo>();
+builder.Services.AddScoped<ICourseRepository, CourseRepo>();
+builder.Services.AddScoped<IEnrollmentRepo, EnrollmentRepo>();
 
 var app = builder.Build();
 

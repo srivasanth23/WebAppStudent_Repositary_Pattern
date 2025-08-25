@@ -12,8 +12,8 @@ using WebAppStudent_Repositary_Pattern.Data;
 namespace WebAppStudent_Repositary_Pattern.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    [Migration("20250822092630_StudentEnrollmentCreation")]
-    partial class StudentEnrollmentCreation
+    [Migration("20250825051416_StudentEnrollments")]
+    partial class StudentEnrollments
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,23 +61,17 @@ namespace WebAppStudent_Repositary_Pattern.Migrations
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CoursesId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("EnrollmentDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StudentsId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("CoursesId");
+                    b.HasIndex("CourseId");
 
-                    b.HasIndex("StudentsId");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("Enrollments");
                 });
@@ -110,11 +104,15 @@ namespace WebAppStudent_Repositary_Pattern.Migrations
                 {
                     b.HasOne("WebAppStudent_Repositary_Pattern.Models.Courses", "Courses")
                         .WithMany()
-                        .HasForeignKey("CoursesId");
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("WebAppStudent_Repositary_Pattern.Models.Students", "Students")
                         .WithMany()
-                        .HasForeignKey("StudentsId");
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Courses");
 

@@ -35,7 +35,7 @@ namespace WebAppStudent_Repositary_Pattern.Repositories
             var student = await _context.Students.FindAsync(id);
 
             if (student == null) { 
-                return null;
+                return null!;
             }
 
             return student;

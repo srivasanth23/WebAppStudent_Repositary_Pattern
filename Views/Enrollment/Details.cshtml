@@ -1,0 +1,8 @@
+﻿@model WebAppStudent_Repositary_Pattern.Models.Enrollments
+
+<h2>Enrollment Details</h2>
+<div>
+    <p><strong>Student Name:</strong> @Model.Students?.Name</p>
+    <p><strong>Course Name:</strong> @Model.Courses?.Name</p>
+</div>
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>

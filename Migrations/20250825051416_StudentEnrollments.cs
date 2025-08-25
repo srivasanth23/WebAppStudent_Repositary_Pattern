@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WebAppStudent_Repositary_Pattern.Migrations
 {
     /// <inheritdoc />
-    public partial class StudentEnrollmentCreation : Migration
+    public partial class StudentEnrollments : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -49,34 +49,34 @@ namespace WebAppStudent_Repositary_Pattern.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StudentId = table.Column<int>(type: "int", nullable: false),
                     CourseId = table.Column<int>(type: "int", nullable: false),
-                    EnrollmentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    StudentsId = table.Column<int>(type: "int", nullable: true),
-                    CoursesId = table.Column<int>(type: "int", nullable: true)
+                    EnrollmentDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Enrollments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Enrollments_Courses_CoursesId",
-                        column: x => x.CoursesId,
+                        name: "FK_Enrollments_Courses_CourseId",
+                        column: x => x.CourseId,
                         principalTable: "Courses",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Enrollments_Students_StudentsId",
-                        column: x => x.StudentsId,
+                        name: "FK_Enrollments_Students_StudentId",
+                        column: x => x.StudentId,
                         principalTable: "Students",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Enrollments_CoursesId",
+                name: "IX_Enrollments_CourseId",
                 table: "Enrollments",
-                column: "CoursesId");
+                column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Enrollments_StudentsId",
+                name: "IX_Enrollments_StudentId",
                 table: "Enrollments",
-                column: "StudentsId");
+                column: "StudentId");
         }
 
         /// <inheritdoc />

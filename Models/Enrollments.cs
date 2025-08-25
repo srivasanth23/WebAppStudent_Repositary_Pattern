@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebAppStudent_Repositary_Pattern.Models
 {
@@ -6,7 +7,9 @@ namespace WebAppStudent_Repositary_Pattern.Models
     {
         [Key]
         public int Id { get; set; }
+        [ForeignKey("Students")]
         public int StudentId { get; set; }
+        [ForeignKey("Courses")]
         public int CourseId { get; set; }
         public DateTime EnrollmentDate { get; set; }
 

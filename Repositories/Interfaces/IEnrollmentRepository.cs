@@ -1,6 +1,10 @@
-﻿namespace WebAppStudent_Repositary_Pattern.Repositories.Interfaces
+﻿using WebAppStudent_Repositary_Pattern.Models;
+
+public interface IEnrollmentRepo
 {
-    public interface IEnrollmentRepository
-    {
-    }
+    Task<IEnumerable<Enrollments>> GetAllEnrollments();
+    Task<Enrollments> GetEnrollmentbyId(int id);
+    Task AddEnrollmentsAsync(Enrollments enrollment);
+    Task UpdateEnrollmentsAsync(int id, Enrollments enrollment);
+    Task DeleteEnrollmentsAsync(int id);
 }
